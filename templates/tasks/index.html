@@ -1,0 +1,35 @@
+{% extends 'tasks/base.html' %}
+{% load neg %}
+{% block body %}
+    {% if object_list %}
+        <h1>Here is all Tasks</h1>
+        <ul>
+            {% for task in object_list %}
+            <li>
+                <form method="post" style="display: inline;" action="{% url 'tasks:task-delete' task.id  %}">
+                        {% csrf_token %}
+                        {% if "P" in task.status %}
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        {% endif %}
+                </form>
+
+                <form style="display: inline;" action="{% url 'tasks:status-update' task.id  %}" method="post">
+                    {% csrf_token %}
+                    <label >
+                        {{ task.title }} {{task.groups}}
+                        {% if "P" in task.status %}
+                            <input style = "color:black;" type="submit" value="Done">
+                        {% else%}
+                            <p style="color:green;display: inline;">&#10004;</p>
+                        {% endif %}                                
+                    </label><br>  
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You dont have any tasks</h3>
+    {% endif %}
+{% endblock %}

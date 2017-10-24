@@ -1,0 +1,19 @@
+body{
+    background: gray url("images/background.jpg");
+    color: white; 
+}
+
+.navbar{
+    border-radius: 0;
+}
+.button {
+    background-color: #4CAF50;
+}
+.navbar-brand {
+    font-family: 'Satisfy', cursive;
+}
+
+.p{
+    color:green;
+    display: inline;
+}
